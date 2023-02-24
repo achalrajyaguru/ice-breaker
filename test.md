@@ -1,2 +1,0 @@
-# ice-breaker
-Masters Project
