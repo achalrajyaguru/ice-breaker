@@ -46,7 +46,8 @@ app.post('/signup', async (req, res) => {
         }
 
         const insertedUser = await users.insertOne(data)
-
+        console.log(insertedUser)
+        
         const token = jwt.sign(insertedUser, sanitizedEmail, {
             expiresIn: 60 * 24
         })
@@ -191,10 +192,13 @@ app.put('/user', async (req, res) => {
 
         const updateDocument = {
             $set: {
+                email: formData.email,
+                password: formData.password,
                 first_name: formData.first_name,
-                dob_day: formData.dob_day,
-                dob_month: formData.dob_month,
-                dob_year: formData.dob_year,
+                dob_dob: formData.dob_dob,
+                // dob_day: formData.dob_day,
+                // dob_month: formData.dob_month,
+                // dob_year: formData.dob_year,
                 show_gender: formData.show_gender,
                 gender_identity: formData.gender_identity,
                 gender_interest: formData.gender_interest,

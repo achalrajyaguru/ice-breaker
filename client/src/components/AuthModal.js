@@ -24,10 +24,10 @@ const AuthModal = ({ setShowModal,  isSignUp }) => {
         e.preventDefault()
 
         try {
-            if (isSignUp && (password !== confirmPassword)) {
-                setError('Passwords need to match!')
-                return
-            }
+            // if (isSignUp && (password !== confirmPassword)) {
+            //     setError('Passwords need to match!')
+            //     return
+            //}
 
             const response = await axios.post(`http://localhost:8000/${isSignUp ? 'signup' : 'login'}`, { email, password })
 
@@ -37,7 +37,7 @@ const AuthModal = ({ setShowModal,  isSignUp }) => {
             const success = response.status === 201
             if (success && isSignUp) navigate ('/onboarding')
             if (success && !isSignUp) navigate ('/dashboard')
-           navigate ('/onboarding')
+         
             window.location.reload()
 
         } catch (error) {
