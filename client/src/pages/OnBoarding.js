@@ -19,6 +19,8 @@ const OnBoarding = () => {
     show_gender: false,
     gender_identity: "man",
     gender_interest: "woman",
+    building_b: "b1",
+    time: 0,
     url: "",
     about: "",
     matches: [],
@@ -180,6 +182,39 @@ const OnBoarding = () => {
               />
               <label htmlFor="more-gender-identity">More</label>
             </div>
+
+            <label>Where do you study</label>
+            <div className="multiple-input-container">
+              <input
+                id="b1identity"
+                type="radio"
+                name="building_b"
+                value="b1"
+                onChange={handleChange}
+                checked={formData.building_b === "b1"}
+              />
+              <label htmlFor="b1identity">Engineering building</label>
+              <input
+                id="b2identity"
+                type="radio"
+                name="building_b"
+                value="b2"
+                onChange={handleChange}
+                checked={formData.building_b === "b2"}
+              />
+              <label htmlFor="b2identity">Science building</label>
+            </div>
+
+            <label htmlFor="time">When will you be on campus</label>
+            <input
+              id="time"
+              type="text"
+              name="time"
+              placeholder="for e.g 9"
+              required={true}
+              value={formData.time}
+              onChange={handleChange}
+            />
 
             <label htmlFor="show-gender">
               Show Gender on my Profile{" "}

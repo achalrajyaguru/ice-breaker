@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["user"]);
 
   const userId = cookies.UserId;
-
+console.log(userId)
   const getUser = async () => {
     try {
       const response = await axios.get("http://localhost:8000/user", {
@@ -22,10 +22,16 @@ const Dashboard = () => {
       console.log(error);
     }
   };
+
   const getGenderedUsers = async () => {
     try {
+      console.log(user)
       const response = await axios.get("http://localhost:8000/gendered-users", {
-        params: { gender: user?.gender_interest },
+        params: {
+          gender_identity: user?.interest,
+          building_1: user?.building_1,
+          time_frame: user?.time_frame,
+        },
       });
       setGenderedUsers(response.data);
     } catch (error) {

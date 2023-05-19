@@ -20,6 +20,7 @@ app.get("/", (req, res) => {
 });
 
 // Sign up to the Database
+// Sign up to the Database
 app.post("/signup", async (req, res) => {
   const client = new MongoClient(uri);
   console.log(req.body.json);
@@ -48,16 +49,18 @@ app.post("/signup", async (req, res) => {
 
     const updateDocument = {
       user_id: generatedUserId,
-      email: obj.email,
-      password: obj.password,
+      email: sanitizedEmail,
+      password: hashedPassword,
       first_name: obj.first_name,
       dob_dob: obj.dob_dob,
+      time_frame: obj.time,
+      building_1: obj.building_b,
       // dob_day: formData.dob_day,
       // dob_month: formData.dob_month,
       // dob_year: formData.dob_year,
       show_gender: obj.show_gender,
       gender_identity: obj.gender_identity,
-      gender_interest: obj.gender_interest,
+      interest: obj.gender_interest,
       url: obj.url,
       about: obj.about,
       matches: obj.matches,
@@ -88,10 +91,10 @@ app.post("/login", async (req, res) => {
     const users = database.collection("users");
 
     const user = await users.findOne({ email });
-
+    console.log(user)
     const correctPassword = await bcrypt.compare(
       password,
-      user.hashed_password
+      user.password
     );
 
     if (user && correctPassword) {
@@ -143,7 +146,14 @@ app.put("/addmatch", async (req, res) => {
     };
     const user = await users.updateOne(query, updateDocument);
     res.send(user);
-  } finally {
+
+    
+  } 
+  catch(error){ 
+
+    console.log(error)
+  }
+  finally {
     await client.close();
   }
 });
@@ -177,15 +187,23 @@ app.get("/users", async (req, res) => {
 });
 
 // Get all the Gendered Users in the Database
+// Get all the Gendered Users in the Database
 app.get("/gendered-users", async (req, res) => {
-  const client = new MongoClient(uri);
-  const gender = req.query.gender;
 
+  console.log(req.query)
+  const client = new MongoClient(uri);
+  const gender = req.query.gender_identity;
+  const building_1 = req.query.building_1;
+  const tf = req.query.time_frame;
   try {
     await client.connect();
     const database = client.db("app-data");
     const users = database.collection("users");
-    const query = { gender_identity: { $eq: gender } };
+    const query = {
+      gender_identity: { $eq: gender },
+      building_1: { $eq: building_1 },
+      time_frame: { $eq: tf },
+    };
     const foundUsers = await users.find(query).toArray();
     res.json(foundUsers);
   } finally {

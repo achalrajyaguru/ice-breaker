@@ -75,12 +75,12 @@ nav .nav-button:disabled {
 }
 
 nav .logo-container {
-    width: 100x;
+    width: 10x;
     margin: 30px;
 }
 
 nav .logo-container .logo {
-    width: 140%;
+    width: 100%;
 }
 
 /*-------- Home page --------*/
