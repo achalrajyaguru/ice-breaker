@@ -2,9 +2,9 @@
 Masters Project 295B
 
 ## Contributors
-Ealrada Piroyan (SID: )
+Ealrada Piroyan (SID:0 12181481)
 Achal Rajyaguru (SID: 015958670)
-Vanita Rani (SID: )
+Vanita Rani (SID: 009888801)
 
 ## Steps to Run the Code (Frontend)
 
@@ -25,4 +25,14 @@ Vanita Rani (SID: )
 2. You can paste the link to your MongoDB collection here or you can use the same database that I have used
 3. Open the server folder in your terminal and type " npm run start:backend "
 4. This should start the backend server on localhost:3000 port and the app is ready to run
+
+
+
+## Recommended future upgrades
+#### For anybody who want to enhance this project:
+
+1. In its present state app uses Authentication tokens to login a users and the user data is not stored locally, adding protected routes will be a good start when developing this application further
+2. The user chat is only updated when the page is refresh, a good addition would be to add a SW3 bucket which updates the user chat without refreshing the application
+3. I have added the swipe up and down feature but there are no particular actions associated with it, adding a super like to swipe up would be a good start
+4. I have only displayed the user names, a good addition would be to enlarge the user cards and add their hobbies and description underneath them
 
